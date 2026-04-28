@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Pra Karol ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    font-family: Arial;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 60px;
+}
+
+.foto {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff4d6d;
+    box-shadow: 0 0 30px #ff4d6d;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {box-shadow: 0 0 20px #ff4d6d;}
+    50% {box-shadow: 0 0 40px #ff4d6d;}
+    100% {box-shadow: 0 0 20px #ff4d6d;}
+}
+
+.frase {
+    margin-top: 30px;
+    font-size: 22px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    min-height: 160px;
+}
+
+.nome {
+    font-size: 32px;
+    color: #ff4d6d;
+    font-weight: bold;
+    text-shadow: 0 0 20px #ff4d6d;
+}
+</style>
+</head>
+
+<body onclick="start()">
+
+<div class="container">
+    <img src="foto.jpg" class="foto">
+    <div class="frase" id="frase"></div>
+    <p style="opacity:0.6;">toque na tela 🎵</p>
+</div>
+
+<audio id="music" autoplay loop muted>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const frases = [
+    {tempo: 3, texto: "faz tempo né..."},
+    {tempo: 7, texto: "mesmo depois de anos sem a gente se falar..."},
+    {tempo: 12, texto: "eu percebi uma coisa"},
+    {tempo: 16, texto: "tem sentimento que não vai embora"},
+    
+    {tempo: 22, texto: "porque no fundo..."},
+    
+    {tempo: 25, texto: "<span class='nome'>Karol...</span>"},
+    
+    {tempo
