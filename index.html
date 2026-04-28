@@ -19,7 +19,7 @@ body {
     color: white;
 }
 
-/* ENVELOPE */
+/* envelope */
 .envelope {
     width: 220px;
     height: 140px;
@@ -39,35 +39,25 @@ body {
     border-left: 110px solid transparent;
     border-right: 110px solid transparent;
     border-bottom: 80px solid #ff2e55;
-    transition: 0.6s;
     transform-origin: top;
+    transition: 0.6s;
 }
 
+/* animação */
 .envelope.aberto {
-    transform: translateY(-70px) scale(0.8);
+    transform: scale(0.8) translateY(-60px);
     opacity: 0;
 }
 
-/* CARTA */
+/* carta */
 #carta {
     display: none;
     text-align: center;
     max-width: 800px;
-    padding: 30px;
-
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-
-    animation: aparecer 1s ease forwards;
+    padding: 25px;
 }
 
-@keyframes aparecer {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* FOTO */
+/* foto */
 img {
     width: 300px;
     height: 300px;
@@ -78,16 +68,15 @@ img {
     margin-bottom: 10px;
 }
 
-/* TEXTO ESTILO CARTA */
+/* texto */
 #texto {
     font-family: 'Dancing Script', cursive;
     font-size: 34px;
     line-height: 1.8;
     white-space: pre-line;
-    margin-top: 10px;
 }
 
-/* ❤️ coração */
+/* coração */
 .heart {
     font-size: 42px;
     animation: pulse 1s infinite;
@@ -97,22 +86,6 @@ img {
     0% { transform: scale(1); }
     50% { transform: scale(1.3); }
     100% { transform: scale(1); }
-}
-
-/* corações caindo */
-.heart-fall {
-    position: absolute;
-    top: -50px;
-    color: #ff4d6d;
-    font-size: 20px;
-    animation: fall linear forwards;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-        opacity: 0;
-    }
 }
 </style>
 </head>
@@ -132,13 +105,10 @@ mesmo depois de tudo o que aconteceu entre nós…
 
 eu ainda te carrego nos meus pensamentos.  
 
-existem sentimentos que o tempo não apaga…  
-
 Karol… você marcou a minha história ❤️  
 
-
 Depois que te conheci, eu entendi o que era amar de verdade.  
-Mesmo com tudo o que aconteceu entre nós, eu nunca deixei de te amar…  
+Mesmo com tudo o que aconteceu, eu nunca deixei de te amar…  
 
 Eu errei, eu pensei, eu amadureci.  
 Hoje eu só queria seu perdão… e a chance de recomeçar tudo com você.  
@@ -148,10 +118,20 @@ Porque, no fundo… ainda é você.
 </div>
 
 <script>
-let aberto = false;
-
 function abrir() {
-    if (aberto) return;
-    aberto = true;
+    const envelope = document.getElementById("envelope");
+    const carta = document.getElementById("carta");
 
-    const
+    // anima envelope
+    envelope.classList.add("aberto");
+
+    // garante troca depois da animação
+    setTimeout(() => {
+        envelope.style.display = "none";
+        carta.style.display = "block";
+    }, 600);
+}
+</script>
+
+</body>
+</html>
