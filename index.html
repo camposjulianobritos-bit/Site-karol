@@ -6,80 +6,174 @@
 
 <style>
 body {
-    background: black;
-    color: white;
-    text-align: center;
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle, #1a1a1a, black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: Arial;
+    color: white;
+    overflow: hidden;
 }
 
-/* BOTÃO GRANDE */
+/* CONTAINER */
+.container {
+    text-align: center;
+}
+
+/* BOTÃO */
 .botao {
-    margin-top: 120px;
-    padding: 25px;
+    padding: 25px 45px;
     border: 3px solid #ff4d6d;
-    display: inline-block;
-    cursor: pointer;
     font-size: 28px;
     border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao:hover {
+    background: #ff4d6d;
+    color: black;
 }
 
 /* CARTA */
 #carta {
     display: none;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
-/* FOTO GRANDE */
+/* FOTO */
 img {
-    width: 300px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
+    border: 4px solid #ff4d6d;
+    box-shadow: 0 0 25px #ff4d6d;
+    object-fit: cover;
 }
 
-/* TEXTO GRANDE */
+/* TEXTO */
 #texto {
-    font-size: 26px;
+    font-size: 32px;
     margin-top: 20px;
+    min-height: 60px;
+}
+
+/* ❤️ coração batendo */
+.heart {
+    font-size: 40px;
+    animation: pulse 1s infinite;
+    display: inline-block;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* 🌧️ corações caindo */
+.heart-fall {
+    position: absolute;
+    top: -50px;
+    color: #ff4d6d;
+    font-size: 22px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="botao" onclick="abrir()">💌 Toque aqui</div>
+<div class="container">
 
-<div id="carta">
-    <img src="foto.png">
-    <p id="texto"></p>
+    <div class="botao" onclick="abrir()">💌 Toque aqui</div>
+
+    <div id="carta">
+        <img src="foto.png">
+        <div class="heart">❤️</div>
+        <p id="texto"></p>
+    </div>
+
+    <audio id="music">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
 </div>
 
-<audio id="music">
-    <source src="musica.mp3" type="audio/mpeg">
-</audio>
-
 <script>
+let iniciado = false;
+
 function abrir() {
+    if (iniciado) return;
+    iniciado = true;
+
     document.getElementById("carta").style.display = "block";
 
-    const music = document.getElementById("music");
-    music.play().catch(()=>{});
+    document.getElementById("music").play().catch(() => {});
+
+    chuvaCoracoes();
 
     const frases = [
         "faz tempo né...",
-        "mesmo depois de anos sem a gente se falar...",
+        "mesmo depois de tudo...",
         "eu percebi uma coisa...",
-        "tem sentimento que não vai embora...",
+        "tem coisas que não passam...",
         "Karol ❤️"
     ];
 
     let i = 0;
     const texto = document.getElementById("texto");
 
-    setInterval(() => {
+    function digitar() {
         if (i < frases.length) {
-            texto.innerHTML = frases[i];
-            i++;
+            let frase = frases[i];
+            texto.innerHTML = "";
+            let j = 0;
+
+            function escrever() {
+                if (j < frase.length) {
+                    texto.innerHTML += frase[j];
+                    j++;
+                    setTimeout(escrever, 80); // efeito digitação
+                } else {
+                    i++;
+                    setTimeout(digitar, 4000); // mais lento entre frases
+                }
+            }
+
+            escrever();
         }
-    }, 2000);
+    }
+
+    digitar();
+}
+
+/* 🌧️ chuva de corações */
+function chuvaCoracoes() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart-fall");
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+
+    }, 300);
 }
 </script>
 
