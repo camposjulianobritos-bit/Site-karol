@@ -1,97 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Pra Karol ❤️</title>
 
 <style>
 body {
-    margin: 0;
-    background: linear-gradient(black, #1a0010);
-    font-family: Arial;
+    background: black;
     color: white;
     text-align: center;
-    overflow: hidden;
+    font-family: Arial;
 }
 
-/* Envelope */
-.envelope {
-    width: 300px;
-    height: 200px;
-    background: #111;
-    margin: 100px auto;
-    position: relative;
-    cursor: pointer;
+.botao {
+    margin-top: 100px;
+    padding: 15px;
     border: 2px solid #ff4d6d;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.envelope::before {
-    content: "";
-    position: absolute;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 100px solid #ff4d6d;
-    top: -100px;
-    left: 0;
-    transition: 1s;
+#carta {
+    display: none;
+    margin-top: 30px;
 }
 
-.envelope.open::before {
-    transform: rotateX(180deg);
-}
-
-/* Carta */
-.carta {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: 1s;
-}
-
-.carta.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Foto */
-.foto {
-    width: 220px;
-    height: 220px;
+img {
+    width: 200px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ff4d6d;
-    box-shadow: 0 0 25px #ff4d6d;
-}
-
-/* Texto */
-.frase {
-    margin-top: 20px;
-    font-size: 22px;
-    max-width: 320px;
-    margin: 20px auto;
-    min-height: 140px;
-    opacity: 0;
-    transition: 1s;
-}
-
-.frase.show {
-    opacity: 1;
-}
-
-.nome {
-    font-size: 30px;
-    color: #ff4d6d;
-    text-shadow: 0 0 15px #ff4d6d;
 }
 </style>
 </head>
 
 <body>
 
-<div class="envelope" id="envelope"></div>
+<div class="botao" onclick="abrir()">💌 Toque aqui</div>
 
-<div class="carta" id="carta">
-    <img src="foto.png" class="foto">
-    <div class="frase" id="frase"></div>
+<div id="carta">
+    <img src="foto.png">
+    <p id="texto"></p>
 </div>
 
 <audio id="music">
@@ -99,27 +46,31 @@ body {
 </audio>
 
 <script>
-const frases = [
-    "faz tempo né...",
-    "mesmo depois de anos sem a gente se falar...",
-    "eu percebi uma coisa...",
-    "tem sentimento que não vai embora...",
-    "porque no fundo...",
-    "<span class='nome'>Karol ❤️</span>"
-];
+function abrir() {
+    document.getElementById("carta").style.display = "block";
 
-let iniciado = false;
+    const music = document.getElementById("music");
+    music.play().catch(()=>{});
 
-document.getElementById("envelope").addEventListener("click", () => {
-    if (iniciado) return;
-    iniciado = true;
+    const frases = [
+        "faz tempo né...",
+        "mesmo depois de anos sem a gente se falar...",
+        "eu percebi uma coisa...",
+        "tem sentimento que não vai embora...",
+        "Karol ❤️"
+    ];
 
-    document.getElementById("envelope").classList.add("open");
+    let i = 0;
+    const texto = document.getElementById("texto");
 
-    setTimeout(() => {
-        document.getElementById("carta").classList.add("show");
-        iniciarTexto();
-    }, 1000);
+    setInterval(() => {
+        if (i < frases.length) {
+            texto.innerHTML = frases[i];
+            i++;
+        }
+    }, 2000);
+}
+</script>
 
-    const music = document.getElementById("music
-                                        
+</body>
+</html>
