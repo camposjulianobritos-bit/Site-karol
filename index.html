@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Pra Karol ❤️</title>
 
-<!-- ✍️ fonte escrita à mão -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -20,7 +19,6 @@ body {
     overflow: hidden;
 }
 
-/* envelope */
 .envelope {
     width: 220px;
     height: 140px;
@@ -29,7 +27,6 @@ body {
     cursor: pointer;
     border-radius: 8px;
     box-shadow: 0 0 20px #ff4d6d;
-    transition: 0.6s;
 }
 
 .envelope::before {
@@ -40,21 +37,21 @@ body {
     border-left: 110px solid transparent;
     border-right: 110px solid transparent;
     border-bottom: 80px solid #ff2e55;
-    transition: 0.6s;
     transform-origin: top;
+    transition: 0.6s;
 }
 
 .envelope.aberto {
-    transform: translateY(-60px);
+    transform: translateY(-50px);
     opacity: 0;
+    transition: 0.6s;
 }
 
-/* carta */
 #carta {
     display: none;
     text-align: center;
     max-width: 750px;
-    padding: 25px;
+    padding: 20px;
     animation: aparecer 1s ease forwards;
 }
 
@@ -63,7 +60,80 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* foto */
 img {
-    width: 320px;
-    height: 320
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px solid #ff4d6d;
+    box-shadow: 0 0 25px #ff4d6d;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+#texto {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+.heart {
+    font-size: 40px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope" id="envelope" onclick="abrir()"></div>
+
+<div id="carta">
+    <img src="foto.png">
+    <div class="heart">❤️</div>
+
+    <div id="texto">
+já faz um tempo… mas ainda parece tudo recente na minha cabeça.  
+
+mesmo depois de tudo o que aconteceu entre nós…  
+
+eu ainda te carrego nos meus pensamentos.  
+
+Karol… você marcou a minha história ❤️  
+
+
+Depois que te conheci, eu entendi o que era amar de verdade.  
+Mesmo com tudo o que aconteceu, eu nunca deixei de te amar…  
+
+Eu errei, eu pensei, eu amadureci.  
+Hoje eu só queria seu perdão… e a chance de recomeçar tudo com você.  
+
+Porque, no fundo… ainda é você.
+    </div>
+</div>
+
+<script>
+let aberto = false;
+
+function abrir() {
+    if (aberto) return;
+    aberto = true;
+
+    const envelope = document.getElementById("envelope");
+    envelope.classList.add("aberto");
+
+    setTimeout(() => {
+        envelope.style.display = "none";
+        document.getElementById("carta").style.display = "block";
+    }, 700);
+}
+</script>
+
+</body>
+</html>
