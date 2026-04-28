@@ -4,134 +4,46 @@
 <meta charset="UTF-8">
 <title>Pra Karol ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
 body {
     margin: 0;
     height: 100vh;
-    background: radial-gradient(circle, #1a1a1a, black);
+    background: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial;
     color: white;
-    overflow: hidden;
+    font-family: Arial;
 }
 
-.envelope {
-    width: 220px;
-    height: 140px;
-    background: #ff4d6d;
-    position: relative;
-    cursor: pointer;
-    border-radius: 8px;
-    box-shadow: 0 0 20px #ff4d6d;
-}
-
-.envelope::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-left: 110px solid transparent;
-    border-right: 110px solid transparent;
-    border-bottom: 80px solid #ff2e55;
-    transform-origin: top;
-    transition: 0.6s;
-}
-
-.envelope.aberto {
-    transform: translateY(-50px);
-    opacity: 0;
-    transition: 0.6s;
-}
-
-#carta {
-    display: none;
+.box {
     text-align: center;
-    max-width: 750px;
+}
+
+button {
     padding: 20px;
-    animation: aparecer 1s ease forwards;
-}
-
-@keyframes aparecer {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 4px solid #ff4d6d;
-    box-shadow: 0 0 25px #ff4d6d;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-#texto {
-    font-family: 'Dancing Script', cursive;
-    font-size: 30px;
-    line-height: 1.7;
-    white-space: pre-line;
-}
-
-.heart {
-    font-size: 40px;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="envelope" id="envelope" onclick="abrir()"></div>
+<div class="box">
+    <button onclick="abrir()">Abrir 💌</button>
 
-<div id="carta">
-    <img src="foto.png">
-    <div class="heart">❤️</div>
-
-    <div id="texto">
-já faz um tempo… mas ainda parece tudo recente na minha cabeça.  
-
-mesmo depois de tudo o que aconteceu entre nós…  
-
-eu ainda te carrego nos meus pensamentos.  
-
-Karol… você marcou a minha história ❤️  
-
-
-Depois que te conheci, eu entendi o que era amar de verdade.  
-Mesmo com tudo o que aconteceu, eu nunca deixei de te amar…  
-
-Eu errei, eu pensei, eu amadureci.  
-Hoje eu só queria seu perdão… e a chance de recomeçar tudo com você.  
-
-Porque, no fundo… ainda é você.
+    <div id="carta" style="display:none; margin-top:20px;">
+        <h1>Funcionou ✔</h1>
+        <p>Se isso aparecer, seu site está ok.</p>
     </div>
 </div>
 
 <script>
-let aberto = false;
-
 function abrir() {
-    if (aberto) return;
-    aberto = true;
-
-    const envelope = document.getElementById("envelope");
-    envelope.classList.add("aberto");
-
-    setTimeout(() => {
-        envelope.style.display = "none";
-        document.getElementById("carta").style.display = "block";
-    }, 700);
+    document.getElementById("carta").style.display = "block";
 }
 </script>
 
